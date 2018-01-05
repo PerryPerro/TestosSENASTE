@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Logic;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace Testos.Models
         public byte[] ProfilePic { get; set; }
         public string Filename { get; set; }
         public string ContentType { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
 
         // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 

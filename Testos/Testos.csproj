@@ -218,6 +218,7 @@
     <Compile Include="Repos\Repository.cs" />
     <Compile Include="Repos\UserRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ValuesController1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -226,13 +227,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Index1.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\HtmlPage1.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
     <Content Include="Views\Post\SkapaPost.cshtml" />
+    <Content Include="Views\Home\SearchUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

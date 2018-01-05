@@ -22,16 +22,10 @@ namespace Testos.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
-        public IEnumerable<Post> GetAll()
-        {
-            return db.Posts.ToList();
-        }
-
       
         public class PostListItem
         {
-            public string Id { get; set; }
+            public int Id { get; set; }
             public string Text { get; set; }
             public virtual ApplicationUser From { get; set; }
             public virtual ApplicationUser To { get; set; }
@@ -40,13 +34,13 @@ namespace Testos.Controllers
             public byte[] File { get; set; }
         }
 
-        public IEnumerable<Post> GetAllPosts()
+        public IEnumerable<Post> GetAll()
         {
             var posts = db.Posts.ToList();
             return posts;
         }
 
-        public IHttpActionResult GetProduct(string id)
+        public IHttpActionResult Get(int id)
         {
             var post= db.Posts.FirstOrDefault((p) => p.Id == id);
             if (post == null)
@@ -65,9 +59,9 @@ namespace Testos.Controllers
                     Text = post.Text,
                     From = post.From,
                     To = post.To,
-                    Filename = post.Filename,
-                    ContentType = post.ContentType,
-                    File = post.File
+                    //Filename = post.Filename,C:\Users\Antie\Source\Repos\TestosSENASTE\Testos\Controllers\Api\PostsController.cs
+                    //ContentType = post.ContentType,
+                    //File = post.File
                 })
                 .ToList();
         }

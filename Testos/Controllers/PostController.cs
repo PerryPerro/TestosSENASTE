@@ -24,7 +24,7 @@ namespace Testos.Controllers
         }
 
         [HttpPost]
-        public ActionResult SkapaPost(Post post, string id, HttpPostedFileBase upload)
+        public ActionResult SkapaPost(Post post, string id)
         {
             var userName = User.Identity.Name;
             var user = db.Users.Single(x => x.UserName == userName);
@@ -33,19 +33,17 @@ namespace Testos.Controllers
             var toUser = db.Users.Single(x => x.Id == id);
             post.To = toUser;
 
+            //if (upload != null && upload.ContentLength > 0)
+            //{
+            //    post.Filename = upload.FileName;
+            //    post.ContentType = upload.ContentType;
+
+            //    using (var reader = new BinaryReader(upload.InputStream))
+            //    {
+            //        post.File = reader.ReadBytes(upload.ContentLength);
+            //    }
+            //}
             db.Posts.Add(post);
-
-            if (upload != null && upload.ContentLength > 0)
-            {
-                post.Filename = upload.FileName;
-                post.ContentType = upload.ContentType;
-
-                using (var reader = new BinaryReader(upload.InputStream))
-                {
-                    post.File = reader.ReadBytes(upload.ContentLength);
-                }
-            }
-
             db.SaveChanges();
 
             return RedirectToAction("Index", new { id = id });

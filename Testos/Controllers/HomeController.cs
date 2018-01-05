@@ -10,6 +10,7 @@ namespace Testos.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -26,6 +27,13 @@ namespace Testos.Controllers
 
             return View();
         }
+        public ActionResult SearchUsers(string searchString)
+        {
+
+            return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
+        }
+
+
         public ActionResult Image(string id)
         {
             var User = db.Users.Single(x => x.Id == id);

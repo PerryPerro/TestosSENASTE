@@ -90,15 +90,16 @@ namespace Testos.Controllers
         public ActionResult SeeOtherProfile(string id)
         {
             var user = db.Users.Find(id);
-            var post = db.Posts.ToList().Where(x => x.Id == id);
+            var post = db.Posts.Include(x => x.From).Where(x => x.To.Id == id).ToList();
+            //var post = db.Posts.ToList().Where(x => x.Id == id);
 
             return View(new ProfileModel { Id = id, User = user, posts = post });
 
         }
-        public ActionResult ListOFUsers()
+        public ActionResult ListOFUsers(string searchString)
         {
             var users = db.Users.ToList();
-            return View(users);
+            return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
 
         }
         

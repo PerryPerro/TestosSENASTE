@@ -5,10 +5,15 @@
 }
 
 <h2>ListOfUsers</h2>
-
+@using (Html.BeginForm("ListOfUsers", "Profile", FormMethod.Get))
+{
+    @Html.TextBox("SearchString")<input type="submit" value="Search" />
+}
 <table class="table">
     <tr>
-        
+        <th>
+            Profil
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -28,7 +33,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model) {  
     <tr>
         <td>
            
