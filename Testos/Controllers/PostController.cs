@@ -18,13 +18,16 @@ namespace Testos.Controllers
             return View(new PostModel { Id = id, Posts = posts });
 
         }
+        public ActionResult SkapaPost(string id)
+        {
+            return View();
+        }
 
+        [HttpPost]
         public ActionResult SkapaPost(Post post, string id, HttpPostedFileBase upload)
         {
             var userName = User.Identity.Name;
-
             var user = db.Users.Single(x => x.UserName == userName);
-
             post.From = user;
 
             var toUser = db.Users.Single(x => x.Id == id);

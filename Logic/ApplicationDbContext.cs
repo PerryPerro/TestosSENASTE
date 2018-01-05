@@ -42,6 +42,7 @@ namespace Testos.Models
 
 
 
+
         //public System.Data.Entity.DbSet<Testos.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

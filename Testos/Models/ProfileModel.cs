@@ -10,7 +10,7 @@ namespace Testos.Models
     {
         public ApplicationUser User { get; set; }
         public string Id { get; set; }
-       
+        public IEnumerable<Post> posts { get; set; }
         
     }
 }

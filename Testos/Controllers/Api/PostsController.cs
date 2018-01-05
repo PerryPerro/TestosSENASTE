@@ -9,19 +9,10 @@ using Testos.Models;
 
 namespace Testos.Controllers
 {
-    public class PostListItem
+    
+    public class PostsController : ApiController
     {
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public virtual ApplicationUser From { get; set; }
-        public virtual ApplicationUser To { get; set; }
-        public string Filename { get; set; }
-        public string ContentType { get; set; }
-        public byte[] File { get; set; }
-    }
-
-    public class BookController : ApiController
-    {
+      
         protected ApplicationDbContext db = new ApplicationDbContext();
 
         protected override void Dispose(bool disposing)
@@ -29,6 +20,40 @@ namespace Testos.Controllers
             if (disposing) db.Dispose();
 
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public IEnumerable<Post> GetAll()
+        {
+            return db.Posts.ToList();
+        }
+
+      
+        public class PostListItem
+        {
+            public string Id { get; set; }
+            public string Text { get; set; }
+            public virtual ApplicationUser From { get; set; }
+            public virtual ApplicationUser To { get; set; }
+            public string Filename { get; set; }
+            public string ContentType { get; set; }
+            public byte[] File { get; set; }
+        }
+
+        public IEnumerable<Post> GetAllPosts()
+        {
+            var posts = db.Posts.ToList();
+            return posts;
+        }
+
+        public IHttpActionResult GetProduct(string id)
+        {
+            var post= db.Posts.FirstOrDefault((p) => p.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
         }
         [HttpGet]
         public List<PostListItem> List()
@@ -46,6 +71,7 @@ namespace Testos.Controllers
                 })
                 .ToList();
         }
+
     }
         
     }

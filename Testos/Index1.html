@@ -11,14 +11,14 @@
     </div>
     <div>
         <h2>Search by ID</h2>
-        <input type="text" id="prodId" size="5" />
+        <input type="text" id="PostId" size="5" />
         <input type="button" value="Search" onclick="find();" />
-        <p id="product" />
+        <p id="Posts" />
     </div>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
-    var uri = 'api/posts';
+    var uri = 'api/postsController';
 
     $(document).ready(function () {
       // Send an AJAX request
@@ -45,7 +45,19 @@
           .fail(function (jqXHR, textStatus, err) {
             $('#post').text('Error: ' + err);
           });
-    }
+        }
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON("api/posts")
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#posts'));
+                    });
+                });
+        });
     </script>
 </body>
-</html>>
+</html>

@@ -90,9 +90,9 @@ namespace Testos.Controllers
         public ActionResult SeeOtherProfile(string id)
         {
             var user = db.Users.Find(id);
+            var post = db.Posts.ToList().Where(x => x.Id == id);
 
-
-            return View(new ProfileModel { Id = id, User = user });
+            return View(new ProfileModel { Id = id, User = user, posts = post });
 
         }
         public ActionResult ListOFUsers()
