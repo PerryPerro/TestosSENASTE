@@ -80,6 +80,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Profile", "EditProfile", new { id = Model.Id }) |
+    @Html.ActionLink("Edit profile", "EditProfile", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Posts", "Index", "Post", new { id = Model.Id }, new { })
 </p>

@@ -29,16 +29,21 @@ namespace Testos.Controllers
             public string Text { get; set; }
             public virtual ApplicationUser From { get; set; }
             public virtual ApplicationUser To { get; set; }
-            public string Filename { get; set; }
-            public string ContentType { get; set; }
-            public byte[] File { get; set; }
+   
         }
 
-        public IEnumerable<Post> GetAll()
+        [HttpGet]
+        public List<Post> GetAll(string id)
         {
-            var posts = db.Posts.ToList();
-            return posts;
+
+            var posts = db.Posts.Where(x => x.From.Id == id);
+
+            return posts.ToList();
         }
+
+
+
+        
 
         public IHttpActionResult Get(int id)
         {
@@ -59,11 +64,25 @@ namespace Testos.Controllers
                     Text = post.Text,
                     From = post.From,
                     To = post.To,
-                    //Filename = post.Filename,C:\Users\Antie\Source\Repos\TestosSENASTE\Testos\Controllers\Api\PostsController.cs
-                    //ContentType = post.ContentType,
-                    //File = post.File
+            
                 })
                 .ToList();
+        }
+
+        public void SkapaPost(Post post, string id)
+        {
+            var userName = User.Identity.Name;
+            var user = db.Users.Single(x => x.UserName == userName);
+            post.From = user;
+
+            var toUser = db.Users.Single(x => x.Id == id);
+            post.To = toUser;
+
+            
+            db.Posts.Add(post);
+            db.SaveChanges();
+
+            //return RedirectToAction("Index", new { id = id });
         }
 
     }

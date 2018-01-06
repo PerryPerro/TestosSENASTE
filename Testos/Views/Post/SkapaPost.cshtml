@@ -1,5 +1,5 @@
-﻿@model Logic.Post
-
+﻿@model Testos.Models.PostCreateModel
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "SkapaPost";
 }
@@ -7,12 +7,12 @@
 <h2>SkapaPost</h2>
 
 
-@using (Html.BeginForm("SkapaPost", "Post", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@*@using (Html.BeginForm("SkapaPost", "Post", null, FormMethod.Post, new { enctype = "multipart/form-data" }))*@
 {
 
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    @*<div class="form-horizontal">
         <h4>Post</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -22,16 +22,25 @@
                 @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@  
         @*@Html.Label("Image", new { @class = "control-label col-md-2" })*@
         @*<div class="col-md-10">
             <input type="file" name="upload" />
         </div>*@
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+            </div>*@
+        @*</div>
+    </div>*@
+    <div>
+        <form name="SendForm" , id="SendPost">
+            <label>Enter Text:</label>
+            <textarea id="PostMessage" name="PostMessage"></textarea>
+
+            <input type="submit" id="SendPost" value="Share Post" />
+
+        </form>
     </div>
 }
 
@@ -40,5 +49,38 @@
 </div>
 
 @section Scripts {
+<script type="text/javascript">
+
+                $(document).ready(function () {
+                    $("#SendPost").submit(function (e) {
+                        e.preventDefault();
+                        var TextContent = $('#PostMessage').val(); 
+                        var data = {to: "@Model.Id", from: "@User.Identity.Name", text: $("#PostMessage").val().trim()}
+
+
+
+                        $.ajax({
+                        url: "Controllers/api/Posts/SkapaPost",
+                        type: "POST",
+                        dataType: 'json',
+                        data: data,
+                        success: function () {
+                            document.getElementById("SendPost").reset();
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("Error please try again");
+                        }
+
+
+                        });
+
+
+                    });
+
+                });
+
+
+</script>
     @Scripts.Render("~/bundles/jqueryval")
 }
