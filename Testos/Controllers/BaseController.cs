@@ -18,6 +18,7 @@ namespace Testos.Controllers
 
             base.Dispose(disposing);
         }
+        // Om användaren inte lagt upp en profilbild så får den en dummybild, annars visar den bilden användaren sparat.
         public FileContentResult Image(string id)
         {
             if (User.Identity.IsAuthenticated)

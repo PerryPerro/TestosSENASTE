@@ -25,6 +25,7 @@ namespace Testos.Models
         public string ContentType { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<ApplicationUser> Friends { get; set; }
+        public Boolean searchable { get; set; }
 
         // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 

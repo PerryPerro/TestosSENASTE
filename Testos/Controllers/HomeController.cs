@@ -27,13 +27,14 @@ namespace Testos.Controllers
 
             return View();
         }
+        //Söker och hämtar ut all användardata ur användardatabasen om deras firstname matchar söksträngen
         public ActionResult SearchUsers(string searchString)
         {
 
             return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
         }
 
-
+        //Hämtar sparade bilden på den användare som skickas med i parametern
         public ActionResult Image(string id)
         {
             var User = db.Users.Single(x => x.Id == id);

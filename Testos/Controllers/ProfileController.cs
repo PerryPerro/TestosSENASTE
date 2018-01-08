@@ -19,19 +19,21 @@ namespace Testos.Controllers
         {
             return View();
         }
+        // Hämtar den inloggade användarens id genom User Identity och visar dess profil genom view.
        public ActionResult SeeProfile()
         {
                 var idet = User.Identity.GetUserId();
             var user = db.Users.Find(idet);
             return View(user);
         }
+        //
         public ActionResult EditProfile()
         {
             var idet = User.Identity.GetUserId();
             var user = db.Users.Find(idet);
             return View(user);
         }
-
+        // Sparar ändringarna av den inloggade usern i databasen,
         [HttpPost]
         public ActionResult EditProfile([Bind(Exclude = "profilePic")] ApplicationUser user)
         {
@@ -86,7 +88,7 @@ namespace Testos.Controllers
             // after successfully uploading redirect the user
             return RedirectToAction("actionname", "controller name");
         }
-
+        // Visar en sparad användares profil.
         public ActionResult SeeOtherProfile(string id)
         {
             var user = db.Users.Find(id);
@@ -102,6 +104,7 @@ namespace Testos.Controllers
             return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
 
         }
+        // hämtar ett användar id och visar dess vänner.
         public ActionResult ViewFriends(string id)
         {
             var toUser = db.Users.Find(id);
@@ -109,6 +112,25 @@ namespace Testos.Controllers
             return View(Friends);
         }
         
+        // Ändrar propertyn searchable till false på användaren. 
+        public ActionResult SearchableOn()
+        {
+            var user = User.Identity.GetUserId();
+            db.Users.Find(user).searchable = false;
+            db.SaveChanges();
+
+            return RedirectToAction("SeeProfile", "Profile", new { id = user });
+        }
+
+        public ActionResult SearchableOff()
+        {
+            var user = User.Identity.GetUserId();
+            db.Users.Find(user).searchable = true;
+            db.SaveChanges();
+
+            return RedirectToAction("SeeProfile", "Profile", new { id = user });
+
+        }
         
     }
 }

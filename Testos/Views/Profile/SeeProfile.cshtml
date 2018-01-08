@@ -1,20 +1,21 @@
 ﻿@model Testos.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "SeeProfile";
+    ViewBag.Title = "Your Profile";
 }
 
 <h2>SeeProfile</h2>
 
 <div>
-    <h4>ApplicationUser</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dd>
             <img src="@Url.Action("Image", new { id = Model.Id })" />
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @*@Html.DisplayNameFor(model => model.FirstName)*@
+            Name:
         </dt>
 
         <dd>
@@ -22,7 +23,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EfterNamn)
+            Lastname:
+            @*@Html.DisplayNameFor(model => model.EfterNamn)*@
         </dt>
 
         <dd>
@@ -30,7 +32,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Gender)
+            Gender:
+            @*@Html.DisplayNameFor(model => model.Gender)*@
         </dt>
 
         <dd>
@@ -38,7 +41,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Age)
+            Age:
+            @*@Html.DisplayNameFor(model => model.Age)*@
         </dt>
 
         <dd>
@@ -46,42 +50,45 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.From)
+            From:
+            @*@Html.DisplayNameFor(model => model.From)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.From)
         </dd>
 
+        
+
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
+            Username:
+            @*@Html.DisplayNameFor(model => model.UserName)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
+       
+
 
     </dl>
 </div>
+<div>
+    @if (Model.searchable == false)
+    {
+        <h2> Sökbar</h2>
+    }
+    else
+    {
+        <h2> Inte Sökbar</h2>
+    }
+
+</div>
 <p>
+    @Html.ActionLink("Turn on search", "SearchableOn", "Profile", new { }) |
+    @Html.ActionLink("Turn off search", "SearchableOff", "Profile", new { }) |
     @Html.ActionLink("Friends", "ViewFriends", "Profile", new { id = Model.Id }) |
     @Html.ActionLink("Edit profile", "EditProfile", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Posts", "Index", "Post", new { id = Model.Id }, new { })
+    @Html.ActionLink("Posts", "Index", "Post", new { id = Model.Id }, new { }) |
 </p>

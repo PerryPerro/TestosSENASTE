@@ -1,7 +1,7 @@
 ﻿@model Testos.Models.ProfileModel
 
 @{
-    ViewBag.Title = "SeeOtherProfile";
+    ViewBag.Title = "User profile";
 }
 
 <h2>SeeOtherProfile</h2>
@@ -10,8 +10,11 @@
     <h4>ProfileModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dd>
+            <img src="@Url.Action("Image", new { id = Model.Id })" />
+        </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
+            Name
         </dt>
 
         <dd>
@@ -19,27 +22,33 @@
         </dd>
         
         <dt>
-            @Html.DisplayNameFor(model => model.User.EfterNamn)
+            Lastname:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.EfterNamn)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.User.Gender)
+           Gender:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.Gender)
+        </dd>
+        <dt>
+            Age:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Age)
         </dd>
     </dl>
 </div>
 
 <p>
     
-    @Html.ActionLink("Send friend request", "SendRequest", "FriendRequest", new { id = Model.Id }, new { })
+    @Html.ActionLink("Send friend request", "SendRequest", "FriendRequest", new { id = Model.Id }, new { }) |
 
-    @Html.ActionLink("See Posts", "Index", "Post", new { id = Model.Id }, new { })
+    @Html.ActionLink("See Posts", "Index", "Post", new { id = Model.Id }, new { }) |
 
-    @Html.ActionLink("Write Posts", "SkapaPost", "Post", new { id = Model.Id }, new { })
+    @Html.ActionLink("Write Posts", "SkapaPost", "Post", new { id = Model.Id }, new { }) |
 </p>

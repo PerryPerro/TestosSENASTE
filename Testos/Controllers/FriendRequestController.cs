@@ -11,14 +11,15 @@ namespace Testos.Controllers
 {
     public class FriendRequestController : BaseController
     {
-        // GET: FriendRequest
+        
+        // hämtar alla vänförfrågningar på den som är inloggad.
         public ActionResult Index()
         {
             var user = User.Identity.GetUserId();
             var listOfFriends = db.FriendRequests.Where(e => e.To.Id == user);
             return View( listOfFriends);
         }
-        
+        // metod för att acceptera vänförfrågan
         public ActionResult Accept(int id)
         {
             var request = db.FriendRequests.Find(id);
@@ -35,13 +36,14 @@ namespace Testos.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "FriendRequest");
         }
+        //metod för att avböja vänförfrågan
        public ActionResult Decline(int id)
         {
             var request = db.FriendRequests.Find(id);
             db.FriendRequests.Remove(request);
             return RedirectToAction("Index", "FriendRequest");
         }
-
+        // metod för att skicka en vänförfrågan till en annan användare. 
         public ActionResult SendRequest(string id)
         {
             var fromUser = User.Identity.GetUserId();
