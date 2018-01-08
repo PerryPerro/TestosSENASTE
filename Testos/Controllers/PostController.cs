@@ -20,9 +20,7 @@ namespace Testos.Controllers
         }
         public ActionResult SkapaPost(string id)
         {
-            var to = db.Users.Find(id).ToString();
-            var from = User.Identity.Name;
-            return View(new PostCreateModel { Id = id, To = to, From = from });
+            return View(new PostCreateModel { Id = id });
         }
 
         [HttpPost]

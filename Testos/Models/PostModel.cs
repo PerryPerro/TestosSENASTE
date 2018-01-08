@@ -11,4 +11,11 @@ namespace Testos.Models
         public string Id { get; set; }
         public ICollection<Post> Posts { get; set; }
     }
+
+    public class PostItem
+    {
+        public string to { get; set; }
+        public string from { get; set; }
+        public string text { get; set; }
+    }
 }

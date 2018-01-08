@@ -36,7 +36,10 @@
 </div>
 
 <p>
-    @Html.ActionLink("Send friend request", "Index")
+    
+    @Html.ActionLink("Send friend request", "SendRequest", "FriendRequest", new { id = Model.Id }, new { })
+
     @Html.ActionLink("See Posts", "Index", "Post", new { id = Model.Id }, new { })
+
     @Html.ActionLink("Write Posts", "SkapaPost", "Post", new { id = Model.Id }, new { })
 </p>

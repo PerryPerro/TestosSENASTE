@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Logic.FriendRequest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            User
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.From.UserName)
+    
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "Accept", new { id=item.Id }) |
+            @Html.ActionLink("Decline", "Decline", new { id=item.Id }) |
+
+           
+        </td>
+    </tr>
+}
+
+</table>

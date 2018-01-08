@@ -24,14 +24,14 @@
                  
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Profile", "SeeProfile", "Profile")</li>
-                    <li>@Html.ActionLink("Find partner", "ListOfUsers", "Profile")</li>
-                    <li>@Html.ActionLink("Search Users", "SearchUsers", "Home")</li>
-                    
-                    @*@using (Html.BeginForm("SearchUsers", "Home", FormMethod.Get))
+                    @if (Request.IsAuthenticated)
                     {
-                        @Html.TextBox("SearchString")
-                        <input type="submit" value="Search" />*@
+                    <li>@Html.ActionLink("Search Users", "SearchUsers", "Home")</li>
+                    <li>@Html.ActionLink("Find partner", "ListOfUsers", "Profile")</li>
+                    <li>@Html.ActionLink("Profile", "SeeProfile", "Profile")</li>
+                    <li>@Html.ActionLink("Friend Requests", "Index", "FriendRequest")</li>
+                    }
+
                     }
 
 

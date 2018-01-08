@@ -1,14 +1,14 @@
 ﻿@model Testos.Models.PostCreateModel
 @using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "SkapaPost";
+    ViewBag.Title = "Create Post";
 }
 
 <h2>SkapaPost</h2>
 
 
 @*@using (Html.BeginForm("SkapaPost", "Post", null, FormMethod.Post, new { enctype = "multipart/form-data" }))*@
-{
+
 
     @Html.AntiForgeryToken()
 
@@ -42,7 +42,7 @@
 
         </form>
     </div>
-}
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -53,14 +53,14 @@
 
                 $(document).ready(function () {
                     $("#SendPost").submit(function (e) {
-                        e.preventDefault();
+                        e.preventDefault()
                         var TextContent = $('#PostMessage').val(); 
-                        var data = {to: "@Model.Id", from: "@User.Identity.Name", text: $("#PostMessage").val().trim()}
+                        var data = {to: "@Model.Id", from: "@User.Identity.GetUserId()", text: $("#PostMessage").val()}
 
 
 
                         $.ajax({
-                        url: "Controllers/api/Posts/SkapaPost",
+                        url: "/api/Posts/CreatePost",
                         type: "POST",
                         dataType: 'json',
                         data: data,

@@ -102,6 +102,12 @@ namespace Testos.Controllers
             return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
 
         }
+        public ActionResult ViewFriends(string id)
+        {
+            var toUser = db.Users.Find(id);
+            var Friends = db.Friends.ToList().Where(e => e.SecondUser == toUser);
+            return View(Friends);
+        }
         
         
     }
