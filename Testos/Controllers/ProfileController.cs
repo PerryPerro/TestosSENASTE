@@ -104,6 +104,8 @@ namespace Testos.Controllers
             return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
 
         }
+
+  
         // hämtar ett användar id och visar dess vänner.
         public ActionResult ViewFriends(string id)
         {

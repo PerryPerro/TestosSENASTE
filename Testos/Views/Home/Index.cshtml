@@ -1,17 +1,28 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<Testos.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "";
 }
 
-    <img src="~/Content/FinderLogo.png" height="300" width="800" /> 
-<div class="row">
-    <div class="col-md-4">
-        <h2>asdas</h2>
-        <p> asd
-        </p>
-        
-    </div>
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-    </div>
-</div>
+<img src="~/Content/FinderLogo.png" height="300" width="800" />
+
+
+<table class="table">
+    <tr></tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("SeeOtherProfile", "Profile", new { id = item.Id })">
+                    <img src="@Url.Action("Image", new { id = item.Id })" />
+                </a>
+            </td>
+            <td>
+               @Html.DisplayFor(modelitem => item.FirstName)
+            </td>
+
+        </tr>
+    }
+
+</table>

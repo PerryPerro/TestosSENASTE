@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using Testos.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,9 +28,18 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
+
                     <li>@Html.ActionLink("Search Users", "SearchUsers", "Home")</li>
                     <li>@Html.ActionLink("Find partner", "ListOfUsers", "Profile")</li>
                     <li>@Html.ActionLink("Profile", "SeeProfile", "Profile")</li>
+                        @*using (var db = new ApplicationDbContext)
+                        {
+                            var user = User.Identity.GetUserId();
+                            var toUser = db.Users.Find(user);
+                            if (db.FriendRequests.Where(e => e.To.Id == toUser)
+                        }
+
+                        if (db.FriendRequests.Where(e => e.To.Id == User.Identity.GetUserId)*@
                     <li>@Html.ActionLink("Friend Requests", "Index", "FriendRequest")</li>
                     }
 

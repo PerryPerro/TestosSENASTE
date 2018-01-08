@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,16 @@ namespace Testos.Controllers
     {
         public ActionResult Index()
         {
-            
-            return View();
+            var users = db.Users.ToList().Where(x => x.Id != User.Identity.GetUserId());     
+            return View(users);
         }
 
+        public ActionResult ListOFUsers(string searchString)
+        {
+            var users = db.Users.ToList();
+            return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
+
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -34,11 +41,6 @@ namespace Testos.Controllers
             return View(db.Users.Where(x => x.FirstName.Contains(searchString) || searchString == null).ToList());
         }
 
-        //Hämtar sparade bilden på den användare som skickas med i parametern
-        public ActionResult Image(string id)
-        {
-            var User = db.Users.Single(x => x.Id == id);
-            return File(User.ProfilePic, User.ContentType);
-        }
+
     }
 }

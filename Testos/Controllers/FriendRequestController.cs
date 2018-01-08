@@ -36,6 +36,8 @@ namespace Testos.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "FriendRequest");
         }
+
+  
         //metod för att avböja vänförfrågan
        public ActionResult Decline(int id)
         {

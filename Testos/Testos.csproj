@@ -213,6 +213,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FriendRequestModel.cs" />
     <Compile Include="Models\FriendsModel.cs" />
+    <Compile Include="Models\IndexUserModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostCreateModel.cs" />
     <Compile Include="Models\PostModel.cs" />
