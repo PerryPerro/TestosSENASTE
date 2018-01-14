@@ -16,8 +16,8 @@ namespace Testos.Controllers
         public ActionResult Index()
         {
             var user = User.Identity.GetUserId();
-            var listOfFriends = db.FriendRequests.Where(e => e.To.Id == user);
-            return View( listOfFriends);
+            var listOfFriends = db.FriendRequests.ToList().Where(e => e.To.Id == user);
+            return View(listOfFriends);
         }
         // metod för att acceptera vänförfrågan
         public ActionResult Accept(int id)

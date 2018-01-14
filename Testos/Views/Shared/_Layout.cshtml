@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Testos.Models
+@{ 
+    int friendReqQuantity = Logic.Methods.CountRequests(User.Identity.GetUserId());
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,24 +29,20 @@
                  
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (Request.IsAuthenticated)
-                    {
+                    
+                     @if (Request.IsAuthenticated)
+                     {
+                        <li>@Html.ActionLink("Find partner", "ListOfUsers", "Profile")</li>
+                        <li>@Html.ActionLink("Profile", "SeeProfile", "Profile")</li>
 
-                    <li>@Html.ActionLink("Search Users", "SearchUsers", "Home")</li>
-                    <li>@Html.ActionLink("Find partner", "ListOfUsers", "Profile")</li>
-                    <li>@Html.ActionLink("Profile", "SeeProfile", "Profile")</li>
-                        @*using (var db = new ApplicationDbContext)
-                        {
-                            var user = User.Identity.GetUserId();
-                            var toUser = db.Users.Find(user);
-                            if (db.FriendRequests.Where(e => e.To.Id == toUser)
-                        }
+                         if (friendReqQuantity > 0)
+                         {
+                            <li>@Html.ActionLink(friendReqQuantity+" Friend Requests", "Index", "FriendRequest")</li>
+                         }
+                     }
+                   
 
-                        if (db.FriendRequests.Where(e => e.To.Id == User.Identity.GetUserId)*@
-                    <li>@Html.ActionLink("Friend Requests", "Index", "FriendRequest")</li>
-                    }
-
-                    }
+                    
 
 
                 </ul>

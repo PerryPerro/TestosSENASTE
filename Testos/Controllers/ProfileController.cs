@@ -20,14 +20,13 @@ namespace Testos.Controllers
             return View();
         }
         // Hämtar den inloggade användarens id genom User Identity och visar dess profil genom view.
-       public ActionResult SeeProfile()
+        public ActionResult SeeProfile()
         {
-                var idet = User.Identity.GetUserId();
+            var idet = User.Identity.GetUserId();
             var user = db.Users.Find(idet);
             return View(user);
         }
-        //
-        public ActionResult EditProfile()
+            public ActionResult EditProfile()
         {
             var idet = User.Identity.GetUserId();
             var user = db.Users.Find(idet);
@@ -50,7 +49,7 @@ namespace Testos.Controllers
             byte[] imageData = null;
             if(Request.Files.Count > 0)
             {
-                HttpPostedFileBase poImgFile = Request.Files["profilPic"];
+                HttpPostedFileBase poImgFile = Request.Files["ProfilePic"];
                 using (var reader = new BinaryReader(poImgFile.InputStream))
                 {
                     imageData = reader.ReadBytes(poImgFile.ContentLength);
@@ -107,9 +106,11 @@ namespace Testos.Controllers
 
   
         // hämtar ett användar id och visar dess vänner.
-        public ActionResult ViewFriends(string id)
+        public ActionResult ViewFriends()
         {
-            var toUser = db.Users.Find(id);
+            //var toUser = db.Users.Find(id);
+            var loggedUser = User.Identity.GetUserId();
+            var toUser = db.Users.Find(loggedUser);
             var Friends = db.Friends.ToList().Where(e => e.SecondUser == toUser);
             return View(Friends);
         }

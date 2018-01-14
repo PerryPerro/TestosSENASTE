@@ -90,6 +90,7 @@
     <Compile Include="FriendRequest.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

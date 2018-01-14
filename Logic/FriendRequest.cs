@@ -10,7 +10,7 @@ namespace Logic
     public class FriendRequest
     {
         public int Id { get; set; }
-        public ApplicationUser From { get; set; }
-        public ApplicationUser To { get; set; }
+        public virtual ApplicationUser From { get; set; }
+        public virtual ApplicationUser To { get; set; }
     }
 }

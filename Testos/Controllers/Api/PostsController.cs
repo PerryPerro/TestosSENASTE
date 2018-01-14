@@ -24,7 +24,7 @@ namespace Testos.Controllers
 
       
         //public class PostListItem
-        //{
+        //{ 
         //    public int Id { get; set; }
         //    public string Text { get; set; }
         //    public virtual ApplicationUser From { get; set; }
